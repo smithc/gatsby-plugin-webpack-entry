@@ -21,6 +21,9 @@ export function onRenderBody ({ setHeadComponents, setPostBodyComponents }: OnRe
     }
   }
 
+  var gatsby = require("gatsby");
+  var withPrefix = gatsby.withAssetPrefix || gatsby.withPrefix;
+
   let entryLinks: React.ReactNode[] = []
   let entryScripts: React.ReactNode[] = []
   Object.keys(pluginOptions.entry).forEach((entry) => {
@@ -28,8 +31,8 @@ export function onRenderBody ({ setHeadComponents, setPostBodyComponents }: OnRe
       // We should not add map files and Webpack runtime is already added by Gatsby.
       if (asset.endsWith('.map') || /webpack-runtime/.test(asset)) return
 
-      entryLinks.push(<link key={asset} as='script' rel='preload' href={`/${asset}`}/>)
-      entryScripts.push(<script key={asset} src={`/${asset}`} async={true}/>)
+      entryLinks.push(<link key={asset} as='script' rel='preload' href={`${withPrefix("/" + asset)}`}/>)
+      entryScripts.push(<script key={asset} src={`${withPrefix("/" + asset)}`} async={true}/>)
     }, [])
   })
 

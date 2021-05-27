@@ -1,5 +1,5 @@
 {
-  "name": "gatsby-plugin-webpack-entry",
+  "name": "@smithc/gatsby-plugin-webpack-entry",
   "version": "1.0.1",
   "description": "Gatsby plugin that lets you add additional entry points to the webpack configuration which will be included in your HTML pages.",
   "main": "index.js",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/itmayziii/gatsby-plugin-webpack-entry.git"
+    "url": "git+https://github.com/smithc/gatsby-plugin-webpack-entry.git"
   },
   "keywords": [
     "gatsby",
@@ -47,5 +47,10 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/smithc/gatsby-plugin-webpack-entry/issues"
+  },
+  "homepage": "https://github.com/smithc/gatsby-plugin-webpack-entry#readme",
+  "dependencies": {}
 }
