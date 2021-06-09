@@ -6,6 +6,10 @@ import { OnRenderBodyArgs, PluginOptions, WebpackStatFile } from './interfaces'
 let webpackStatFile: WebpackStatFile
 // No needs to re-validate the plugin options here, they are validated during "onCreateWebpackConfig" which happens first.
 export function onRenderBody ({ setHeadComponents, setPostBodyComponents }: OnRenderBodyArgs, pluginOptions: PluginOptions) {
+  // Don't emit other entry points unless we're building production pages
+  // Consequently, other entry points won't run in develop mode
+  if (process.env.NODE_ENV !== "production") return;
+  
   if (!webpackStatFile) {
     const statFile = pluginOptions.statsFilePath || path.resolve('public', 'webpack.stats.json')
     let statFileContents: string
