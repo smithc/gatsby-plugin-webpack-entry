@@ -14,7 +14,7 @@ export interface WebpackStatFile {
   namedChunkGroups: {
     [key: string]: {
       chunks: number[]
-      assets: string[]
+      assets: string[] | { name?: string, size?: number }[]
       children: { [key: string]: any }
       childAssets: { [key: string]: any }
     }

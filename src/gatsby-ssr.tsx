@@ -32,11 +32,13 @@ export function onRenderBody ({ setHeadComponents, setPostBodyComponents }: OnRe
   let entryScripts: React.ReactNode[] = []
   Object.keys(pluginOptions.entry).forEach((entry) => {
     webpackStatFile.namedChunkGroups[entry].assets.forEach((asset) => {
-      // We should not add map files and Webpack runtime is already added by Gatsby.
-      if (asset.endsWith('.map') || /webpack-runtime/.test(asset)) return
+      const assetName = typeof asset === 'string' ? asset : asset?.name;
 
-      entryLinks.push(<link key={asset} as='script' rel='preload' href={`${withPrefix("/" + asset)}`}/>)
-      entryScripts.push(<script key={asset} src={`${withPrefix("/" + asset)}`} async={true}/>)
+      // We should not add map files and Webpack runtime is already added by Gatsby.
+      if (!assetName || assetName.endsWith('.map') || /webpack-runtime/.test(assetName)) return
+
+      entryLinks.push(<link key={assetName} as='script' rel='preload' href={`${withPrefix("/" + assetName)}`}/>)
+      entryScripts.push(<script key={assetName} src={`${withPrefix("/" + assetName)}`} async={true}/>)
     }, [])
   })
 
